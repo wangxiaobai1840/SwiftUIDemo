@@ -14,6 +14,7 @@ struct LandmarkRow: Hashable, Codable {
     var park: String
     var state: String
     var description: String
+    var isFavorite: Bool
     private var imageName: String
     var image: Image {
         Image(imageName)
@@ -27,17 +28,5 @@ struct LandmarkRow: Hashable, Codable {
     struct Coordinates: Hashable, Codable {
         var latitude: Double
         var longitude: Double
-    }
-}
-
-struct SwiftUIView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        SwiftUIView()
     }
 }

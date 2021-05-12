@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import Combine
 
-var landmarks: [LandmarkRow] = load("landmarkData.json")
-
+final class ModelData: ObservableObject {
+    @Published var landmarks: [LandmarkRow] = load("landmarkData.json")
+}
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
