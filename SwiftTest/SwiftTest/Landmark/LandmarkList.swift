@@ -16,7 +16,6 @@ struct LandmarkList: View {
         }
     }
     var body: some View {
-        NavigationView{
             List{
                 Toggle(isOn: $showFavoritesOnly, label: {
                     Text("Favorites only")
@@ -29,9 +28,8 @@ struct LandmarkList: View {
                     }
                 }
             }
-            .navigationTitle("Landmarks")
-//            .navigationBarTitleDisplayMode(.inline)
-        }
+//        }
+        .navigationTitle("Landmarks")
     }
 }
 

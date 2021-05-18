@@ -29,4 +29,15 @@ struct LandmarkRow: Hashable, Codable {
         var latitude: Double
         var longitude: Double
     }
+
+    init(id: Int, name: String) {
+        self.id = id
+        self.name = name
+        self.park = ""
+        self.state = ""
+        self.description = ""
+        self.isFavorite = false
+        self.imageName = ""
+        self.coordinates = Coordinates(latitude: 0, longitude: 0)
+    }
 }

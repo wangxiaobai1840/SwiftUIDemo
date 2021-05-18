@@ -15,7 +15,6 @@ struct LandmarkDetail: View {
     }
 
     var body: some View {
-        NavigationView{
             ScrollView{
                 MapSwiftUI(coordinate: landmark.locationCoordinate)
                     .ignoresSafeArea(edges:Edge.Set(rawValue: 0))
@@ -47,9 +46,7 @@ struct LandmarkDetail: View {
                 .padding()
                 Spacer()
             }
-            .navigationTitle(landmark.name)
-            .navigationBarTitleDisplayMode(.inline)
-        }
+        .navigationTitle(landmark.name)
     }
 }
 
