@@ -19,7 +19,7 @@ struct ListView: View {
                         NavigationLink(
                             destination: model.id == 0 ? AnyView(ContentView()
                                         .environmentObject(modelData)
-                            ) : AnyView(BadgeBackground())
+                            ) : AnyView(Badge())
                         ) {
                             Text(model.name)
                         }
