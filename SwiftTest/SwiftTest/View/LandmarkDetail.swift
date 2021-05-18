@@ -23,6 +23,7 @@ struct LandmarkDetail: View {
                 CircleImage(image: landmark.image)
                     .offset(y: -130)
                     .padding(.bottom, -130)
+                // 列
                 VStack(alignment: .leading) {
                     HStack{
                         Text(landmark.name)

@@ -11,6 +11,7 @@ struct LandmarkRowView: View {
     var landmark:LandmarkRow
 
     var body: some View {
+        // 子视图成行展示
         HStack{
             landmark.image
                 .resizable()
