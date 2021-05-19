@@ -7,27 +7,43 @@
 
 import SwiftUI
 
-struct ListView: View {
-    
-    @StateObject private var modelData = ModelData()
+enum DemoType: Int{
+    case landmark = 0
+    case drawRect
+    case anmitions
 
-    let listData = [LandmarkRow(id: 0, name: "Landmark"), LandmarkRow(id: 1, name: "Draw Rect")]
+    var currentView: AnyView {
+        switch self {
+        case .landmark:
+            return AnyView(ContentView()
+                            .environmentObject(ModelData()))
+        case .drawRect:
+            return AnyView(Badge())
+        case .anmitions:
+            return AnyView(HikeView(hike: ModelData().hikes[0]))
+        }
+    }
+}
+
+struct ListView: View {
+
+    let listData = [LandmarkRow(id: DemoType.landmark.rawValue, name: "Landmark"), LandmarkRow(id: DemoType.drawRect.rawValue, name: "Draw Rect"), LandmarkRow(id: DemoType.anmitions.rawValue, name: "Drawing and Animation")]
     var body: some View {
-            NavigationView{
-                List{
-                    ForEach(listData, id: \.id) { model in
-                        NavigationLink(
-                            destination: model.id == 0 ? AnyView(ContentView()
-                                        .environmentObject(modelData)
-                            ) : AnyView(Badge())
-                        ) {
-                            Text(model.name)
-                        }
+        NavigationView{
+            List{
+                ForEach(listData, id: \.id) { model in
+                    NavigationLink(
+                        destination:
+                            DemoType(rawValue: model.id)?.currentView
+
+                    ) {
+                        Text(model.name)
                     }
                 }
-                .navigationBarTitle("title")
-                .navigationBarTitleDisplayMode(.inline)
             }
+            .navigationBarTitle("title")
+            .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 
