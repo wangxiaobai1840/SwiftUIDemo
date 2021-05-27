@@ -11,6 +11,7 @@ enum DemoType: Int{
     case landmark = 0
     case drawRect
     case anmitions
+    case page
 
     var currentView: AnyView {
         switch self {
@@ -21,13 +22,19 @@ enum DemoType: Int{
             return AnyView(Badge())
         case .anmitions:
             return AnyView(HikeView(hike: ModelData().hikes[0]))
+        case .page:
+            return AnyView(
+                PageView(pages: ModelData().features.map({ FeatureCard(landmark: $0)
+                }))
+                .aspectRatio(1.5, contentMode: .fit)
+            )
         }
     }
 }
 
 struct ListView: View {
 
-    let listData = [LandmarkRow(id: DemoType.landmark.rawValue, name: "Landmark"), LandmarkRow(id: DemoType.drawRect.rawValue, name: "Draw Rect"), LandmarkRow(id: DemoType.anmitions.rawValue, name: "Drawing and Animation")]
+    let listData = [LandmarkRow(id: DemoType.landmark.rawValue, name: "Landmark"), LandmarkRow(id: DemoType.drawRect.rawValue, name: "Draw Rect"), LandmarkRow(id: DemoType.anmitions.rawValue, name: "Drawing and Animation"), LandmarkRow(id: DemoType.page.rawValue, name: "PageViewController")]
     var body: some View {
         NavigationView{
             List{
